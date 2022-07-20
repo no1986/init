@@ -1,0 +1,21 @@
+{
+    "segments": [
+        "virtual_env",
+        "username",
+        "hostname",
+        "cwd",
+        "git"
+    ],
+    "cwd": {
+        "mode": "plain",
+        "max_depth": 8,
+        "max_dir_size": 100
+    },
+    "hostname": {
+        "colorize": false
+    },
+    "vcs": {
+        "show_symbol": true
+    },
+    "theme": "~/.config/powerline-shell/theme.py"
+}

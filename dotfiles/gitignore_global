@@ -1,0 +1,13 @@
+# test
+coverage
+.coverage
+
+# python
+*.pyc
+*venv
+*.egg-info
+
+# Emacs backup files
+*~
+*#
+.#*

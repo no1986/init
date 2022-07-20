@@ -1,0 +1,15 @@
+[user]
+  name = ohkawa
+  email = n.ohkawa1221@gmail.com
+[credential]
+  helper = store
+[diff]
+  compactionHeuristic = true
+[core]
+  autoCRLF = false
+  excludesfile = ~/.gitignore_global
+[ghq]
+  root = ~/ghq
+[commit]
+  template = ~/.gitmessage
+  cleanup = strip
