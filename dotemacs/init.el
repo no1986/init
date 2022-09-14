@@ -1,3 +1,7 @@
+;;; package --- Summary
+;;; Commentary:
+;;; Code:
+
 ;; プロキシ環境の場合はここでプロキシの設定を実施
 ;;(setq url-proxy-services
 ;;      '(("http" . "127.0.0.1:10000")
@@ -379,7 +383,6 @@
     :after (embark consult)
     :hook
     (embark-collect-mode . consult-preview-at-point-mode))
-
   )
 
 (leaf *color
@@ -705,3 +708,6 @@
        )
     )
   )
+
+(provide 'init)
+;;; init.el ends here
