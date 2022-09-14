@@ -563,13 +563,12 @@
     :diminish (yas-minor-mode)
     :config
     (leaf yasnippet-snippets :ensure t)
-    (leaf helm-c-yasnippet
+    (leaf consult-yasnippet
       :ensure t
-      :config
-      (setq helm-yas-space-match-any-greedy t))
+      :bind
+      ("C-c y" . consult-yasnippet))
     (yas-global-mode t)
     (bind-keys :map yas-minor-mode-map
-               ("C-c y"     . helm-yas-complete)
                ("<backtab>" . yas-expand)
                ("TAB"       . nil)))
   )
