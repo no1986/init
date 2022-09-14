@@ -257,6 +257,15 @@
     (leaf sudo-edit
       :ensure t)
     )
+
+  (leaf flycheck
+    :ensure t
+    :init
+    (global-flycheck-mode t)
+    :bind
+    ("M-t f" . flycheck-next-error)
+    ("M-t l" . list-flycheck-errors)
+    )
   )
 
 (leaf vertico
@@ -610,8 +619,8 @@
     (setq lsp-ui-doc-position 'bottom)
     (setq lsp-ui-doc-max-width 150)
     (setq lsp-ui-doc-max-height 600)
-    ;;(setq lsp-ui-flycheck-enable nil)
-    ;;(setq lsp-ui-flymake-enable t)
+    (setq lsp-ui-flycheck-enable t)
+    (setq lsp-ui-flymake-enable nil)
     (setq lsp-ui-sideline-enable nil)
     (setq lsp-ui-sideline-ignore-duplicate nil)
     (setq lsp-ui-sideline-show-symbol t)
@@ -650,6 +659,18 @@
       (python-mode-hook . poetry-tracking-mode)
       )
 
+    (leaf *python-flycheck
+      :config
+      (setq-default
+       flycheck-disabled-checkers
+       '(python-pycompile
+         python-pylint
+         python-pyright
+         python-mypy
+         )
+       )
+      )
+
     (leaf *python-formatter
       :config
       (leaf python-black
@@ -675,4 +696,12 @@
 
   (leaf yaml-mode
     :ensure t)
+
+  (leaf emacs-lisp-mode
+    :config
+    (setq-default
+       flycheck-disabled-checkers
+       '(emacs-lisp)
+       )
+    )
   )
