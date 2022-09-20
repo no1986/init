@@ -210,6 +210,14 @@ function dotconfig(){
     e_cmd "powershell" 2
 }
 
+function font(){
+    e_cmd "ghq get https://github.com/iij/fontmerger.git > /dev/null" 2
+    path="$(ghq root)/$(ghq list | grep iij/fontmerger)"
+    e_cmd "sudo cp $path/sample/Ricty* /usr/local/share/fonts/" 2
+    e_cmd "fc-cache" 2
+    e_cmd "sudo apt-get -y install gnome-tweaks" 2
+}
+
 e_cmd "package_install"
 e_cmd "env_install"
 e_cmd 'emacs_install "28.1"'
@@ -218,4 +226,4 @@ e_cmd "set_xterm24bit"
 e_cmd "dotfiles"
 e_cmd "dotemacs"
 e_cmd "dotconfig"
-
+e_cmd "font"
