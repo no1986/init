@@ -307,12 +307,15 @@
             consult--source-recent-file
             consult--source-bookmark
             consult--source-project-buffer
-            consult--source-project-recent-file))
-    (leaf consult-ghq
-      :ensure t
-      :bind
-      ("C-x c g" . consult-ghq-grep)
-      ("C-x c f" . consult-ghq-find))
+            consult--source-project-recent-file)
+          )
+    )
+
+  (leaf consult-ghq
+    :ensure t
+    :bind
+    ("C-x c g" . consult-ghq-grep)
+    ("C-x c f" . consult-ghq-find)
     )
 
   (leaf orderless
