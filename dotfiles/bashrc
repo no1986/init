@@ -52,12 +52,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+        # We have color support; assume it's compliant with Ecma-48
+        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
     else
-	color_prompt=
+        color_prompt=
     fi
 fi
 
@@ -146,8 +146,15 @@ export PATH=${NODENV_ROOT}/versions/`(nodenv version | cut -d" " -f1)`/bin:${PAT
 # shell
 ###############
 
+function cmd_exists() {
+    which "$1" > /dev/null 2>&1
+    return $?
+}
+
 # direnv
-alias dpoetry="cat ~/.envrc_poetry > .envrc && direnv allow"
+if cmd_exists direnv; then
+    alias dpoetry="cat ~/.envrc_poetry > .envrc && direnv allow"
+fi
 
 # ghq peco
 _cd_ghq() {
@@ -155,7 +162,11 @@ _cd_ghq() {
     READLINE_LINE="cd $(ghq root)/${_cmd}"
     READLINE_POINT=${#READLINE_LINE}
 }
-bind -x '"\C-g": _cd_ghq'
+if cmd_exists peco; then
+    if cmd_exists ghq; then
+        bind -x '"\C-g": _cd_ghq'
+    fi
+fi
 
 # history peco
 _peco_history() {
@@ -163,23 +174,37 @@ _peco_history() {
     READLINE_LINE="$_cmd"
     READLINE_POINT=${#_cmd}
 }
-bind -x '"\C-r": _peco_history'
+if cmd_exists peco; then
+    bind -x '"\C-r": _peco_history'
+fi
 
 # emacs
-export ALTERNATE_EDITOR=""
-alias emacs="TERM=xterm-24bit emacs"
-alias emacsclient="TERM=xterm-24bit emacsclient"
-alias es="emacs --daemon"
-alias ek="emacsclient -e '(kill-emacs)'"
-alias er="ek && es"
-alias e="emacsclient -t -a ''"
-alias E="emacsclient -c -a ''"
-export EDITOR="emacsclient -t -a ''"
+if cmd_exists emacs; then
+    export ALTERNATE_EDITOR=""
+    alias emacs="TERM=xterm-24bit emacs"
+    alias emacsclient="TERM=xterm-24bit emacsclient"
+    alias es="emacs --daemon"
+    alias ek="emacsclient -e '(kill-emacs)'"
+    alias er="ek && es"
+    alias e="emacsclient -t -a ''"
+    alias E="emacsclient -c -a ''"
+    export EDITOR="emacsclient -t -a ''"
+fi
 
 # powerline-shell
 function _update_ps1() {
     PS1="$(powerline-shell $?)\n> "
 }
 if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+    if cmd_exists powerline-shell; then
+        PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+    fi
 fi
+
+# kubernetes
+if cmd_exists kubectl; then
+    source <(kubectl completion bash)
+    alias k="kubectl"
+    complete -F __start_kubectl k
+fi
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
