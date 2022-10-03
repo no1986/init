@@ -232,9 +232,9 @@
       :ensure t
       :diminish (undo-tree-mode "")
       :bind ("C-x u" . undo-tree-visualize)
-      :config
-      (undo-tree-mode)
-      (setq undo-tree-auto-save-history nil)
+      :custom
+      (global-undo-tree-mode . t)
+      (undo-tree-auto-save-history . nil)
       )
     )
 
