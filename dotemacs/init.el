@@ -602,6 +602,7 @@
     (setq lsp-print-io nil)
     (setq lsp-auto-guess-root t)
     (setq lsp-response-timeout 10)
+    (setq lsp-diagnostics-provider :none)
     ;;(setq lsp-prefer-flymake 'flymake)
     (setq lsp-file-watch-threshold 50000)
     (defun lsp--sort-completions (completions)
@@ -625,7 +626,7 @@
     (setq lsp-ui-doc-position 'bottom)
     (setq lsp-ui-doc-max-width 150)
     (setq lsp-ui-doc-max-height 600)
-    (setq lsp-ui-flycheck-enable t)
+    (setq lsp-ui-flycheck-enable nil)
     (setq lsp-ui-flymake-enable nil)
     (setq lsp-ui-sideline-enable nil)
     (setq lsp-ui-sideline-ignore-duplicate nil)
@@ -666,15 +667,12 @@
       )
 
     (leaf *python-flycheck
+      :disabled
       :config
-      (setq-default
-       flycheck-disabled-checkers
-       '(python-pycompile
-         python-pylint
-         python-pyright
-         python-mypy
-         )
-       )
+      (add-hook
+       'python-mode-hook
+       '(lambda()
+          (flycheck-select-checker 'python-flake8)))
       )
 
     (leaf *python-formatter
