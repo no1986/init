@@ -450,7 +450,7 @@
      '(ediff-even-diff-A         ((t (:background "#000000" :foreground "#b6e63e"))))
      '(ediff-even-diff-B         ((t (:background "#000000" :foreground "#b6e63e"))))
      '(ediff-fine-diff-A         ((t (:foreground "#b6e63e" :foreground "ffffff"))))
-     '(ediff-fine-diff-B         ((t (:foreground "#b6e63e" :foreground "ffffff"))))
+     '(ediff-fine-diff-B         ((t (:foreground "#b6e63e" :foreground "ffffff")))))
     (global-hl-line-mode t)
     (defun my-face-at-point ()
       (let ((face (get-text-property (point) 'face)))
