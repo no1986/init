@@ -285,15 +285,25 @@
 
   (leaf consult
     :ensure t
+    :init
+    (defun consult-line-symbol-at-point ()
+      (interactive)
+      (consult-line (thing-at-point 'symbol)))
+    (defun consult-line-multi-symbol-at-point ()
+      (interactive)
+      (consult-line-multi (thing-at-point 'symbol)))
+    (defun consult-ripgrep-symbol-at-point ()
+      (interactive)
+      (consult-ripgrep nil (thing-at-point 'symbol)))
     :bind
     ("C-x C-b" . project-find-file)
     ("C-x b" . consult-buffer)
     ("C-x f" . consult-recent-file)
-    ("M-o" . consult-line-multi)
-    ("C-o" . consult-line)
+    ("M-o" . consult-line-multi-symbol-at-point)
+    ("C-o" . consult-line-symbol-at-point)
     ("C-c i" . consult-imenu)
     ("C-c r g" . consult-grep)
-    ("C-c r r" . consult-ripgrep)
+    ("C-c r r" . consult-ripgrep-symbol-at-point)
     ("M-g g" . consult-goto-line)
     ("M-y" . consult-yank-from-kill-ring)
     :config
@@ -395,6 +405,10 @@
     :ensure t
     :config
     (load-theme 'doom-molokai t)
+    (leaf all-the-icons
+      :ensure t
+      :config
+      (all-the-icons-install-fonts t))
     (leaf doom-modeline
       :ensure t
       :custom
@@ -435,9 +449,8 @@
      '(ediff-current-diff-B      ((t (:background "#205050" :foreground "#ffffff"))))
      '(ediff-even-diff-A         ((t (:background "#000000" :foreground "#b6e63e"))))
      '(ediff-even-diff-B         ((t (:background "#000000" :foreground "#b6e63e"))))
-     '(ediff-fine-diff-A          ((t (:foreground "#b6e63e"))))
-     '(ediff-fine-diff-B          ((t (:foreground "#b6e63e"))))
-     )
+     '(ediff-fine-diff-A         ((t (:foreground "#b6e63e" :foreground "ffffff"))))
+     '(ediff-fine-diff-B         ((t (:foreground "#b6e63e" :foreground "ffffff"))))
     (global-hl-line-mode t)
     (defun my-face-at-point ()
       (let ((face (get-text-property (point) 'face)))
@@ -510,16 +523,18 @@
     ("C-x g" . magit-status)
     :config
     (eval-after-load "magit-log"
-    '(progn
-       (custom-set-variables
-        '(magit-log-margin '(t "%Y-%m-%d %H:%M:%S" magit-log-margin-width t 18)))))
+      '(progn
+         (custom-set-variables
+          '(magit-log-margin '(t "%Y-%m-%d %H:%M:%S" magit-log-margin-width t 18)))))
     (custom-set-faces
-   '(magit-diff-added ((t (:background "#000000" :foreground "#91b831"))))
-   '(magit-diff-context ((t (:background "#000000" :foreground "#80807f"))))
-   '(magit-diff-context-highlight ((t (:background "#1c1c1c"))))
-   '(magit-diff-hunk-heading-highlight ((t (:background "#6060b0" :foreground "#ffffff" :weight bold))))
-   '(magit-diff-removed ((t (:background "#000000" :foreground "#b83c30"))))
-   )
+     '(magit-diff-added ((t (:background "#000000" :foreground "#91b831"))))
+     '(magit-diff-context ((t (:background "#000000" :foreground "#80807f"))))
+     '(magit-diff-context-highlight ((t (:background "#1c1c1c"))))
+     '(magit-diff-hunk-heading-highlight ((t (:background "#6060b0" :foreground "#ffffff" :weight bold))))
+     '(magit-diff-added-highlight ((t (:background "#008700" :foreground "#ffffff" :weight bold))))
+     '(magit-diff-removed-highlight ((t (:background "#d70000" :foreground "#ffffff" :weight bold))))
+     '(magit-diff-removed ((t (:background "#000000" :foreground "#b83c30"))))
+     )
     )
   )
 
