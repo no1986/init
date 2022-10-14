@@ -181,6 +181,8 @@ fi
 # emacs
 if cmd_exists emacs; then
     export ALTERNATE_EDITOR=""
+    alias emacs="TERM=xterm-emacs-leg emacs"
+    alias emacsclient="TERM=xterm-emacs-leg emacsclient"
     alias es="emacs --daemon"
     alias ek="emacsclient -e '(kill-emacs)'"
     alias er="ek && es"

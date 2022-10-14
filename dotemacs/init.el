@@ -432,26 +432,7 @@
     )
 
   (leaf *face
-    :config
-    ;; test
-    (custom-set-faces
-     '(default                   ((t (:background "#030303"))))
-     '(font-lock-comment-face    ((t (:foreground "#eeee00"))))
-     '(hl-line                   ((t (:background "#204040" :weight bold))))
-     '(dired-ignored             ((t (:foreground "#afafaf"))))
-     '(region                    ((t (:background "#502020"))))
-     '(cua-rectangle             ((t (:background "#502020"))))
-     '(show-paren-match          ((t (:background "#a000a0"))))
-     '(line-number               ((t (:background "#141414" :foreground "#707070"))))
-     '(line-number-current-line  ((t (:foreground "#ffffff"))))
-     '(vertical-border           ((t (:background "#8b8386" :foreground "#8b8386"))))
-     '(ediff-current-diff-A      ((t (:background "#205050" :foreground "#ffffff"))))
-     '(ediff-current-diff-B      ((t (:background "#205050" :foreground "#ffffff"))))
-     '(ediff-even-diff-A         ((t (:background "#000000" :foreground "#b6e63e"))))
-     '(ediff-even-diff-B         ((t (:background "#000000" :foreground "#b6e63e"))))
-     '(ediff-fine-diff-A         ((t (:foreground "#b6e63e" :foreground "ffffff"))))
-     '(ediff-fine-diff-B         ((t (:foreground "#b6e63e" :foreground "ffffff")))))
-    (global-hl-line-mode t)
+    :init
     (defun my-face-at-point ()
       (let ((face (get-text-property (point) 'face)))
         (or (and (face-list-p face)
@@ -464,12 +445,44 @@
                                          (or (my-face-at-point) 'default)
                                          t)))
       nil)
+    :config
+    ;; test
+    (leaf *face-custom-set-faces
+      :config
+      (custom-set-faces
+       '(default                   ((t (:background "#030303"))))
+       '(font-lock-comment-face    ((t (:foreground "#eeee00"))))
+       '(hl-line                   ((t (:background "#204040" :weight bold))))
+       '(dired-ignored             ((t (:foreground "#afafaf"))))
+       '(region                    ((t (:background "#502020"))))
+       '(cua-rectangle             ((t (:background "#502020"))))
+       '(show-paren-match          ((t (:background "#a000a0"))))
+       '(line-number               ((t (:background "#141414" :foreground "#707070"))))
+       '(line-number-current-line  ((t (:foreground "#ffffff"))))
+       '(vertical-border           ((t (:background "#8b8386" :foreground "#8b8386"))))
+       '(ediff-current-diff-A      ((t (:background "#205050" :foreground "#ffffff"))))
+       '(ediff-current-diff-B      ((t (:background "#205050" :foreground "#ffffff"))))
+       '(ediff-even-diff-A         ((t (:background "#000000" :foreground "#b6e63e"))))
+       '(ediff-even-diff-B         ((t (:background "#000000" :foreground "#b6e63e"))))
+       '(ediff-fine-diff-A         ((t (:foreground "#b6e63e" :foreground "ffffff"))))
+       '(ediff-fine-diff-B         ((t (:foreground "#b6e63e" :foreground "ffffff"))))
+       )
+      )
 
-    (eval-after-load "hl-line"
-      '(advice-add 'describe-face :before #'my-describe-face))
-    (setq show-parent-delay 0)
-    (show-paren-mode t)
-    )
+    (leaf *highlight
+      :config
+      (global-hl-line-mode t)
+      (eval-after-load "hl-line"
+        '(advice-add 'describe-face :before #'my-describe-face))
+      (setq show-parent-delay 0)
+      (show-paren-mode t)
+
+      (leaf highlight-indentation
+        :ensure t
+        :config
+        (custom-set-faces
+         '(highlight-indentation-face ((t (:background "#252525"))))))
+      )
 
   (leaf rainbow-delimiters
     :ensure t
@@ -531,8 +544,8 @@
      '(magit-diff-context ((t (:background "#000000" :foreground "#80807f"))))
      '(magit-diff-context-highlight ((t (:background "#1c1c1c"))))
      '(magit-diff-hunk-heading-highlight ((t (:background "#6060b0" :foreground "#ffffff" :weight bold))))
-     '(magit-diff-added-highlight ((t (:background "#008700" :foreground "#ffffff" :weight bold))))
-     '(magit-diff-removed-highlight ((t (:background "#d70000" :foreground "#ffffff" :weight bold))))
+     '(magit-diff-added-highlight ((t (:background "#005000" :foreground "#ffffff" :weight bold))))
+     '(magit-diff-removed-highlight ((t (:background "#500000" :foreground "#ffffff" :weight bold))))
      '(magit-diff-removed ((t (:background "#000000" :foreground "#b83c30"))))
      )
     )
@@ -672,7 +685,9 @@
        'python-mode-hook
        '(lambda ()
           (require 'lsp-pyright)
-          (lsp)))
+          (lsp)
+          (highlight-indentation-mode t))
+          ))
       )
 
     (leaf poetry
