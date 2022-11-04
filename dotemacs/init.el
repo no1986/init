@@ -687,8 +687,7 @@
           (require 'lsp-pyright)
           (lsp)
           (highlight-indentation-mode t))
-          ))
-      )
+       ))
 
     (leaf poetry
       :ensure t
@@ -723,6 +722,22 @@
 
       (bind-key "M-t t" 'my-python-formatter python-mode-map)
       )
+    )
+
+  (leaf go-mode
+    :disabled
+    :ensure t
+    :config
+    (add-hook
+     'go-mode-hook
+     '(lambda ()
+        (lsp)
+        (setq indent-tabs-mode nil)
+        (setq c-basic-offset 4)
+        (setq tab-width 4)
+        ))
+    (setq gofmt-command "goimports")
+    (bind-key "M-t t" 'gofmt)
     )
 
   (leaf csv-mode

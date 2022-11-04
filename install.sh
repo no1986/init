@@ -113,6 +113,8 @@ function env_install(){
         export PATH=${GOPATH}/bin:${PATH}
 
         e_cmd "go install github.com/x-motemen/ghq@latest > /dev/null" 4
+        e_cmd "go install golang.org/x/tools/gopls@latest > /dev/null" 4
+        e_cmd "go install golang.org/x/tools/cmd/goimports@latest > /dev/null" 4
     }
     function nodenv_install(){
         e_cmd "anyenv install nodenv -s > /dev/null" 4
