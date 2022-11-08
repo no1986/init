@@ -483,6 +483,7 @@
         (custom-set-faces
          '(highlight-indentation-face ((t (:background "#252525"))))))
       )
+    )
 
   (leaf rainbow-delimiters
     :ensure t
