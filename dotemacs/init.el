@@ -408,7 +408,9 @@
     (leaf all-the-icons
       :ensure t
       :config
-      (all-the-icons-install-fonts t))
+      (unless (require 'all-the-icons nil t)
+        (all-the-icons-install-fonts t))
+      )
     (leaf doom-modeline
       :ensure t
       :custom

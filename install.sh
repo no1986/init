@@ -226,4 +226,8 @@ e_cmd "set_xterm24bit"
 e_cmd "dotfiles"
 e_cmd "dotemacs"
 e_cmd "dotconfig"
-e_cmd "font"
+if [ `sudo systemctl get-default` == "graphical.target" ];
+then
+    e_cmd "font"
+fi
+
