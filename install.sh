@@ -104,6 +104,7 @@ function env_install(){
 
         export GOENV_ROOT=~/.anyenv/envs/goenv
         export PATH=${GOENV_ROOT}/bin:${PATH}
+        export PATH=${GOENV_ROOT}/shims:${PATH}
 
         local ver=${1:-"1.19.2"}
         e_cmd "goenv install ${ver} -s > /dev/null" 4
