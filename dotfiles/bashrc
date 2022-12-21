@@ -135,6 +135,7 @@ export PATH=${ANYENV_ROOT}/bin:${PATH}
 eval "$(anyenv init -)"
 
 export PATH=${GOPATH}/bin:${PATH}
+export PATH=${GOENV_ROOT}/shims:${PATH}
 
 # direnv
 eval "$(direnv hook bash)"
