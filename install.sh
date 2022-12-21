@@ -59,7 +59,7 @@ function package_install(){
              libgnutls28-dev libgpm-dev libgtk-3-dev libjansson-dev libjpeg-dev liblockfile-dev libm17n-dev \
              libmagick++-6.q16-dev libncurses5-dev libotf-dev libpng-dev librsvg2-dev libselinux1-dev libtiff-dev \
              libxaw7-dev libxml2-dev openssh-client texinfo xaw3dg-dev zlib1g-dev ruby cmigemo p7zip-full \
-             ripgrep direnv peco \
+             ripgrep direnv peco fzf \
              > /dev/null""" 4
     }
     e_cmd "sudo apt-get update > /dev/null" 2
