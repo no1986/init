@@ -89,7 +89,7 @@ function env_install(){
         export PYENV_ROOT=${HOME}/.anyenv/envs/pyenv
         export PATH=${PYENV_ROOT}/bin:${PATH}
 
-        local ver=${1:-"3.11.0"}
+        local ver=${1:-"3.11."}
         e_cmd "pyenv install ${ver} -s > /dev/null" 4
         e_cmd "pyenv global ${ver} > /dev/null" 4
 
