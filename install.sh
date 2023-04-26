@@ -136,7 +136,7 @@ function env_install(){
 }
 
 function emacs_install(){
-    local ver=${1:-"28.1"}
+    local ver=${1:-"28.2"}
 
     if cmd_exists emacs; then
         c_ver=`emacs --version | head -n1 | awk '{print $3}'`
@@ -212,7 +212,7 @@ function dotconfig(){
 
 e_cmd "package_install"
 e_cmd "env_install"
-e_cmd 'emacs_install "28.1"'
+e_cmd 'emacs_install "28.2"'
 e_cmd "repo_get"
 e_cmd "set_xterm24bit"
 e_cmd "dotfiles"
