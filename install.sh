@@ -89,7 +89,7 @@ function env_install(){
         export PYENV_ROOT=${HOME}/.anyenv/envs/pyenv
         export PATH=${PYENV_ROOT}/bin:${PATH}
 
-        local ver=${1:-"3.11.0"}
+        local ver=${1:-"3.11."}
         e_cmd "pyenv install ${ver} -s > /dev/null" 4
         e_cmd "pyenv global ${ver} > /dev/null" 4
 
@@ -106,7 +106,7 @@ function env_install(){
         export PATH=${GOENV_ROOT}/bin:${PATH}
         export PATH=${GOENV_ROOT}/shims:${PATH}
 
-        local ver=${1:-"1.19.2"}
+        local ver=${1:-"1.20.3"}
         e_cmd "goenv install ${ver} -s > /dev/null" 4
         e_cmd "goenv global ${ver} > /dev/null" 4
 
@@ -123,7 +123,7 @@ function env_install(){
         export NODENV_ROOT=${HOME}/.anyenv/envs/nodenv
         export PATH=${NODENV_ROOT}/bin:${PATH}
 
-        local ver=${1:-"19.0.0"}
+        local ver=${1:-"19.9.0"}
         e_cmd "nodenv install ${ver} -s > /dev/null" 4
         e_cmd "nodenv global ${ver} > /dev/null" 4
 
@@ -131,13 +131,13 @@ function env_install(){
     }
 
     e_cmd "anyenv_install" 2
-    e_cmd 'pyenv_install "3.11.0"' 2
-    e_cmd 'goenv_install "1.19.2"' 2
-    e_cmd 'nodenv_install "19.0.0"' 2
+    e_cmd 'pyenv_install "3.11.3"' 2
+    e_cmd 'goenv_install "1.20.3"' 2
+    e_cmd 'nodenv_install "19.9.0"' 2
 }
 
 function emacs_install(){
-    local ver=${1:-"28.1"}
+    local ver=${1:-"28.2"}
 
     if cmd_exists emacs; then
         c_ver=`emacs --version | head -n1 | awk '{print $3}'`
@@ -213,7 +213,7 @@ function dotconfig(){
 
 e_cmd "package_install"
 e_cmd "env_install"
-e_cmd 'emacs_install "28.1"'
+e_cmd 'emacs_install "28.2"'
 e_cmd "repo_get"
 e_cmd "set_xterm24bit"
 e_cmd "dotfiles"
