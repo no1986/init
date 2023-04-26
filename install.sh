@@ -105,7 +105,7 @@ function env_install(){
         export GOENV_ROOT=~/.anyenv/envs/goenv
         export PATH=${GOENV_ROOT}/bin:${PATH}
 
-        local ver=${1:-"1.19.2"}
+        local ver=${1:-"1.20.3"}
         e_cmd "goenv install ${ver} -s > /dev/null" 4
         e_cmd "goenv global ${ver} > /dev/null" 4
 
@@ -122,7 +122,7 @@ function env_install(){
         export NODENV_ROOT=${HOME}/.anyenv/envs/nodenv
         export PATH=${NODENV_ROOT}/bin:${PATH}
 
-        local ver=${1:-"19.0.0"}
+        local ver=${1:-"19.9.0"}
         e_cmd "nodenv install ${ver} -s > /dev/null" 4
         e_cmd "nodenv global ${ver} > /dev/null" 4
 
@@ -130,9 +130,9 @@ function env_install(){
     }
 
     e_cmd "anyenv_install" 2
-    e_cmd 'pyenv_install "3.11.0"' 2
-    e_cmd 'goenv_install "1.19.2"' 2
-    e_cmd 'nodenv_install "19.0.0"' 2
+    e_cmd 'pyenv_install "3.11.3"' 2
+    e_cmd 'goenv_install "1.20.3"' 2
+    e_cmd 'nodenv_install "19.9.0"' 2
 }
 
 function emacs_install(){
