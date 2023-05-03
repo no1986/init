@@ -686,7 +686,7 @@
       :config
       (add-hook
        'python-mode-hook
-       '(lambda ()
+       #'(lambda ()
           (require 'lsp-pyright)
           (lsp)
           (highlight-indentation-mode t))
@@ -703,7 +703,7 @@
       :config
       (add-hook
        'python-mode-hook
-       '(lambda()
+       #'(lambda()
           (flycheck-select-checker 'python-flake8)))
       )
 
@@ -733,7 +733,7 @@
     :config
     (add-hook
      'go-mode-hook
-     '(lambda ()
+     #'(lambda ()
         (lsp)
         (setq indent-tabs-mode nil)
         (setq c-basic-offset 4)
