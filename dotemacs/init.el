@@ -677,6 +677,16 @@
 (leaf *language
   :disabled
   :config
+  (leaf clanguage
+    :config
+    (leaf ccls
+      :ensure t
+      :config
+      (setq ccls-executable "/usr/bin/ccls")
+      (add-hook 'c-mode-hook #'lsp)
+      (add-hook 'c++-mode-hook #'lsp))
+    )
+
   (leaf python
     :ensure t
     :require t
