@@ -131,9 +131,9 @@ function env_install(){
     }
 
     e_cmd "anyenv_install" 2
-    e_cmd 'pyenv_install "3.11.3"' 2
-    e_cmd 'goenv_install "1.20.3"' 2
-    e_cmd 'nodenv_install "19.9.0"' 2
+    e_cmd 'pyenv_install "3.13.0"' 2
+    e_cmd 'goenv_install "1.23.3"' 2
+    e_cmd 'nodenv_install "23.2.0"' 2
 }
 
 function emacs_install(){
@@ -213,7 +213,7 @@ function dotconfig(){
 
 e_cmd "package_install"
 e_cmd "env_install"
-e_cmd 'emacs_install "28.2"'
+e_cmd 'emacs_install "29.4"'
 e_cmd "repo_get"
 e_cmd "set_xterm24bit"
 e_cmd "dotfiles"
